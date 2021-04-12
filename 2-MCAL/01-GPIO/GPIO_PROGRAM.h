@@ -4,7 +4,9 @@
 /* Date    : 12 APRIL 2021			                 */
 /*****************************************************/
 
-#include "STD_TYPS.h"
+#include <avr/io.h>
+
+#include "STD_TYPES.h"
 #include "BIT_MATH.h"
 
 #include "GPIO_INTERFACE.h"

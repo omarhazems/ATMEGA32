@@ -9,6 +9,6 @@
 
 void INTERRUPT_voidInit(void);
 void INTERRUPT_voidEnable(u8 Copy_u8Name, u8 Copy_u8Trigger, void (*Copy_PtrToFunc) (void));
-
+void INTERRUPT_voidDisable(u8 Copy_u8Name);
 
 #endif 

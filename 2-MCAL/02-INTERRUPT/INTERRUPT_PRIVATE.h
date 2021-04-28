@@ -11,9 +11,9 @@
 #define	EXTI1	1
 #define	EXTI2	2
 
-#define LOWLEVEL	0
-#define ONCHANGE	1
-#define FALLING 	2
-#define RISING		3
+#define LOWLEVEL	0b00
+#define ONCHANGE	0b01
+#define FALLING 	0b10
+#define RISING		0b11
 
 #endif 

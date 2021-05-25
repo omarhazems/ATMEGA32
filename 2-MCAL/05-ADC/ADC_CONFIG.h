@@ -21,14 +21,14 @@
 1. LEFT --> neglects small changes in case of 8 bit resolution 
 2. Right--> focuses on small changes in case of 8 bit resolution
 */
-#define RESULT_ADJUST	LEFT
+#define RESULT_ADJUST	RIGHT
 
 
 
 /* select ADC clock prescaler relative to XTAL frequency, available options: 
 TWO - FOUR - EIGHT - SIXTEEN - THIRTY_TWO - SIXTY_FOUR - ONE_TWENTY_EIGHT
 */
-#define	ADC_PRESCALER	TWO
+#define	ADC_PRESCALER	EIGHT
 
 
 

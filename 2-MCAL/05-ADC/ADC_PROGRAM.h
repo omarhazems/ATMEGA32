@@ -16,6 +16,7 @@
 void ADC_voidEnable(){
 	
 	SET_BIT(ADCSRA,ADEN);  //Enable ADC 
+	ADMUX |= (VOLTAGE_REFERENCE << 7);
 	ADMUX |= (RESULT_ADJUST << ADLAR); // sets result adjustment to preconfigured option
 	ADCSRA |= (ADC_PRESCALER << 0);	// set prescaler 
 	
@@ -23,7 +24,7 @@ void ADC_voidEnable(){
 
 void ADC_voidAInit(){
 	
-	u16 Local_u16Dummy = 0 ;
+	u16 Local_u16Dummy ;
 	SET_BIT(ADCSRA,ADSC); // start dummy conversion as initialization 
 	while(GET_BIT(ADCSRA,ADSC)); // wait till conversion finishes 
 	Local_u16Dummy = ADC_u16ADCReadResult();
@@ -31,7 +32,7 @@ void ADC_voidAInit(){
 	
 }
 
-u16	 ADC_u16StartConversion(Copy_u8Channel){
+u16	 ADC_u16StartConversion(u8 Copy_u8Channel){
 	
 	u16 Local_u16Result ;
 	
@@ -45,7 +46,7 @@ u16	 ADC_u16StartConversion(Copy_u8Channel){
 }
 
 
-u16  ADC_u16AverageItrations(Copy_u8Channel, Copy_u8Iterations){
+u16  ADC_u16AverageItrations(u8 Copy_u8Channel, u8 Copy_u8Iterations){
 	
 	u32 Local_u32TempVal = 0;
 	u16 Local_u16AvgResult ;
@@ -67,19 +68,17 @@ u16 ADC_u16ADCReadResult(){
 	#if (ADC_RESOLUTION == EIGHT_BIT)
 		#if (RESULT_ADJUST == LEFT)
 			Local_u16Result = ADCH ;
-		#elseif (RESULT_ADJUST == RIGHT)
+	 #elif (RESULT_ADJUST == RIGHT){
 			Local_u16Result = ADCL ;
 		#endif
-		
-	#elseif (ADC_RESOLUTION == TEN_BIT)
+	#elif (ADC_RESOLUTION == TEN_BIT)
 		#if (RESULT_ADJUST == LEFT)
 			Local_u16Result = (ADCL >> 8) ;
 			Local_u16Result |= ADCH ;
-		#elseif (RESULT_ADJUST == RIGHT)
+		#elif (RESULT_ADJUST == RIGHT)
 			Local_u16Result = ADCL ;
 			Local_u16Result |= (ADCH << 8) ;
 		#endif
-		
 	#endif
 	
 	return Local_u16Result ;
